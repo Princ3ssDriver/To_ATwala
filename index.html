@@ -1,156 +1,219 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff3f5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff1f5">
   <title>A Little Letter for Bhari</title>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(140deg, #fff9f4, #fbe3ed, #f3eaff);
-      color: #634653;
+      color: #624451;
       font-family: Georgia, "Times New Roman", serif;
+      background:
+        linear-gradient(
+          rgba(255, 245, 248, 0.58),
+          rgba(255, 245, 248, 0.72)
+        ),
+        url("IMG_2036.JPG") center center / cover fixed no-repeat;
     }
 
     .container {
-      width: min(92%, 650px);
+      width: min(92%, 680px);
       margin: auto;
-      padding: 55px 0;
+      padding: 45px 0;
       text-align: center;
     }
 
     .tag {
       display: inline-block;
-      padding: 9px 16px;
-      border: 1px solid #eac5d2;
+      padding: 10px 17px;
+      border: 1px solid #e7c4d0;
       border-radius: 30px;
-      background: #ffffffa8;
-      font: 12px Arial, sans-serif;
-      letter-spacing: 1.5px;
+      background: rgba(255, 255, 255, 0.85);
+      font: 11px Arial, sans-serif;
+      letter-spacing: 2px;
     }
 
     h1 {
-      font-size: clamp(40px, 9vw, 62px);
+      margin: 25px 0 12px;
+      font-size: clamp(40px, 9vw, 64px);
       font-weight: normal;
-      margin: 25px 0 15px;
     }
 
-    .pink { color: #bd5d82; }
+    .pink {
+      color: #b8587d;
+    }
 
     .intro {
-      max-width: 470px;
+      max-width: 480px;
       margin: 0 auto 25px;
-      line-height: 1.8;
       font-size: 17px;
+      line-height: 1.8;
     }
 
     .envelope {
       display: block;
       margin: 15px auto;
-      padding: 10px;
-      font-size: 95px;
-      border: 0;
+      padding: 5px;
+      border: none;
       background: transparent;
+      font-size: 90px;
       cursor: pointer;
     }
 
     button {
-      padding: 14px 23px;
       margin: 7px;
+      padding: 14px 23px;
+      border: 1px solid #bd6485;
       border-radius: 30px;
       font-size: 15px;
       cursor: pointer;
-      border: 1px solid #eac5d2;
-      transition: transform .2s;
+      transition: transform 0.2s;
     }
 
-    button:hover { transform: translateY(-2px); }
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    button:focus-visible {
+      outline: 3px solid #bd6485;
+      outline-offset: 3px;
+    }
 
     .primary {
-      background: #bd5d82;
       color: white;
-      border-color: #bd5d82;
+      background: #b8587d;
     }
 
-    .hidden { display: none !important; }
+    .secondary {
+      color: #9e4b6d;
+      background: white;
+      border-color: #e6bdcd;
+    }
 
     .letter {
-      margin-top: 30px;
-      padding: clamp(22px, 6vw, 42px);
-      background: #fffdf9;
-      border: 1px solid #f0d7df;
-      border-radius: 10px;
+      margin-top: 28px;
+      padding: clamp(22px, 6vw, 43px);
+      border: 1px solid #eed8df;
+      border-radius: 12px;
+      background: rgba(255, 253, 249, 0.96);
+      box-shadow: 0 15px 45px rgba(93, 51, 68, 0.13);
       text-align: left;
-      line-height: 1.95;
       font-size: 17px;
-      box-shadow: 0 15px 40px #9e60751a;
+      line-height: 1.95;
+      overflow-wrap: anywhere;
     }
 
     .letter h2 {
       text-align: center;
+      font-size: 30px;
       font-weight: normal;
-      font-size: 31px;
-    }
-
-    .divider {
-      border: 0;
-      border-top: 1px dashed #d9a8b9;
-      margin: 30px 0;
     }
 
     .signature {
+      margin-top: 28px;
+      color: #a34d70;
       text-align: right;
       font-style: italic;
-      color: #b34f78;
     }
 
-    .reply-section { text-align: center; }
+    .divider {
+      margin: 30px 0;
+      border: none;
+      border-top: 1px dashed #d9a8b9;
+    }
 
-    .reply-section p { line-height: 1.7; }
+    .reply-section {
+      text-align: center;
+    }
+
+    .reply-section p {
+      line-height: 1.7;
+    }
 
     .field {
-      margin: 16px 0;
+      margin: 18px 0;
       text-align: left;
     }
 
     label {
       display: block;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       font: 14px Arial, sans-serif;
     }
 
-    input, textarea {
+    input,
+    textarea {
+      display: block;
       width: 100%;
       padding: 13px;
-      border: 1px solid #e6c6d2;
+      border: 1px solid #e4c5d0;
       border-radius: 8px;
       background: white;
-      color: #634653;
+      color: #624451;
       font: 16px Arial, sans-serif;
     }
 
     textarea {
-      min-height: 130px;
+      min-height: 140px;
       resize: vertical;
     }
 
+    input:focus,
+    textarea:focus {
+      outline: 2px solid #bd6485;
+      outline-offset: 2px;
+    }
+
+    .privacy-note {
+      color: #79606b;
+      font: 12px/1.6 Arial, sans-serif;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
     footer {
-      margin-top: 40px;
-      font: 12px Arial, sans-serif;
-      letter-spacing: 1px;
-      color: #956c7c;
+      margin-top: 35px;
+      color: #795b68;
+      font: 11px Arial, sans-serif;
+      letter-spacing: 1.5px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .container {
+        padding: 30px 0;
+      }
+
+      .letter {
+        font-size: 16px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        transition: none !important;
+      html {
+        scroll-behavior: auto;
+      }
+
+      button {
+        transition: none;
       }
     }
   </style>
@@ -158,29 +221,48 @@
 
 <body>
   <main class="container">
-    <div class="tag">A LITTLE SOMETHING JUST FOR YOU</div>
 
-    <h1>Hey, <span class="pink">Bhari</span> ♡</h1>
+    <div class="tag">
+      A LITTLE SOMETHING JUST FOR YOU
+    </div>
+
+    <h1>
+      Hey, <span class="pink">Bhari</span>
+    </h1>
 
     <p class="intro">
       I have something I want to say to you.
-      Instead of sending a normal message,
+      Instead of sending an ordinary message,
       I made you this little corner of the internet.
     </p>
 
-    <button class="envelope" id="envelope"
-      aria-label="Open the letter">💌</button>
-
-    <p id="hint">There's a little letter waiting for you.</p>
-
-    <button class="primary" id="openButton">
-      Open your letter ♡
+    <button
+      class="envelope"
+      id="envelope"
+      aria-label="Open your letter"
+      type="button">
+      💌
     </button>
 
-    <section class="letter hidden" id="letter">
+    <p id="hint">
+      There's a little letter waiting for you.
+    </p>
+
+    <button
+      class="primary"
+      id="openButton"
+      type="button">
+      Open your letter
+    </button>
+
+    <section
+      class="letter hidden"
+      id="letter"
+      aria-label="Apology letter">
+
       <h2>I'm sorry, Bhari.</h2>
 
-      <p>Hey Bhari, ❤️</p>
+      <p>Hey Bhari,</p>
 
       <p>
         I made this little website because I owe you a sincere
@@ -189,14 +271,14 @@
 
       <p>
         I'm sorry for not showing up. I understand that my absence
-        may have disappointed you or hurt your feelings. You
-        deserved better communication and consideration from me.
+        may have disappointed you or hurt your feelings.
+        You deserved better communication and consideration from me.
       </p>
 
       <p>
         Whatever the circumstances were, I know I could have
         handled things better. I don't want to make excuses or
-        act as if what happened doesn't matter.
+        pretend that what happened doesn't matter.
       </p>
 
       <p>
@@ -207,8 +289,8 @@
 
       <p>
         I'm not asking you to forget what happened or forgive me
-        immediately. I just wanted to take responsibility and
-        let you know that I wish I had done things differently.
+        immediately. I just want to take responsibility and let
+        you know that I wish I had done things differently.
       </p>
 
       <p>
@@ -216,7 +298,9 @@
         to listen to how you feel and hopefully make things right.
       </p>
 
-      <p>I'm really sorry, Bhari. ❤️</p>
+      <p>
+        I'm really sorry, Bhari.
+      </p>
 
       <p class="signature">
         With a sincere apology,<br>
@@ -229,51 +313,76 @@
         <h2>Whenever you're ready</h2>
 
         <p>
-          You can leave me a message below.
-          There's no pressure to respond before you're ready.
+          I'd like to hear from you, too.
+          If you want to tell me how you feel,
+          you can leave me a message here.
         </p>
 
         <form
           action="https://formsubmit.app/f/ka2q4tu6sn"
           method="POST">
 
-          <input type="hidden" name="_subject"
+          <input
+            type="hidden"
+            name="_subject"
             value="A message from Bhari - Apology Website">
 
           <div class="field">
-            <label for="name">Your name or nickname</label>
-            <input id="name" name="name"
-              placeholder="Your name" required>
+            <label for="name">
+              Your name or nickname
+            </label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Your name"
+              autocomplete="name"
+              required>
           </div>
 
           <div class="field">
-            <label for="message">Your message</label>
-            <textarea id="message" name="message"
-              placeholder="What would you like to tell me?"
+            <label for="message">
+              Your message
+            </label>
+
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Tell me what's on your mind..."
               required></textarea>
           </div>
 
           <button class="primary" type="submit">
-            Send me your message 💌
+            Send me your message
           </button>
+
+          <p class="privacy-note">
+            Your message will be submitted through our
+            message service. Please don't include passwords
+            or other sensitive information.
+          </p>
         </form>
       </div>
     </section>
 
-    <footer>MADE WITH SINCERITY, JUST FOR BHARI ♡</footer>
+    <footer>
+      MADE WITH SINCERITY, JUST FOR BHARI
+    </footer>
+
   </main>
 
   <script>
     const letter = document.getElementById("letter");
     const openButton = document.getElementById("openButton");
     const envelope = document.getElementById("envelope");
+    const hint = document.getElementById("hint");
 
     function openLetter() {
       letter.classList.remove("hidden");
       openButton.classList.add("hidden");
 
-      document.getElementById("hint").textContent =
-        "A message I wanted you to hear.";
+      hint.textContent = "A message I wanted you to hear.";
 
       letter.scrollIntoView({
         behavior: "smooth",
