@@ -3,18 +3,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff1f5">
-  <title>A Little Letter for Bhari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9e6eb">
+  <title>A Little Letter for Bhari 💌</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -22,11 +16,9 @@
       color: #624451;
       font-family: Georgia, "Times New Roman", serif;
       background:
-        linear-gradient(
-          rgba(255, 245, 248, 0.58),
-          rgba(255, 245, 248, 0.72)
-        ),
-        url("IMG_2036.JPG") center center / cover fixed no-repeat;
+        linear-gradient(rgba(255,240,246,.60),
+                        rgba(255,240,246,.74)),
+        url("IMG_2036.JPG") center / cover fixed no-repeat;
     }
 
     .container {
@@ -39,109 +31,215 @@
     .tag {
       display: inline-block;
       padding: 10px 17px;
-      border: 1px solid #e7c4d0;
+      border: 1px solid #e8c4d1;
       border-radius: 30px;
-      background: rgba(255, 255, 255, 0.85);
+      background: #fffdf0dd;
       font: 11px Arial, sans-serif;
       letter-spacing: 2px;
     }
 
     h1 {
       margin: 25px 0 12px;
-      font-size: clamp(40px, 9vw, 64px);
+      font-size: clamp(40px, 9vw, 62px);
       font-weight: normal;
     }
 
-    .pink {
-      color: #b8587d;
-    }
+    .pink { color: #b8587d; }
 
     .intro {
-      max-width: 480px;
-      margin: 0 auto 25px;
+      max-width: 470px;
+      margin: 0 auto 18px;
       font-size: 17px;
       line-height: 1.8;
     }
 
+    /* ENVELOPE SCENE */
+
+    .envelope-scene {
+      width: min(340px, 90%);
+      height: 235px;
+      margin: 35px auto 5px;
+      perspective: 1000px;
+      position: relative;
+    }
+
     .envelope {
-      display: block;
-      margin: 15px auto;
-      padding: 5px;
-      border: none;
+      position: absolute;
+      width: 100%;
+      height: 190px;
+      bottom: 0;
+      left: 0;
+      cursor: pointer;
+      border: 0;
+      padding: 0;
       background: transparent;
-      font-size: 90px;
-      cursor: pointer;
+      overflow: visible;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    button {
-      margin: 7px;
-      padding: 14px 23px;
-      border: 1px solid #bd6485;
-      border-radius: 30px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: transform 0.2s;
+    .envelope:focus-visible {
+      outline: 3px solid #b8587d;
+      outline-offset: 8px;
+      border-radius: 8px;
     }
 
-    button:hover {
-      transform: translateY(-2px);
+    /* Letter peeking out from inside */
+
+    .letter-preview {
+      position: absolute;
+      z-index: 2;
+      left: 10%;
+      bottom: 15px;
+      width: 80%;
+      height: 140px;
+      border: 1px solid #e6d3c6;
+      background: #fffaf1;
+      box-shadow: 0 3px 8px #55313b22;
+      transition: transform 1s ease, bottom 1s ease;
     }
 
-    button:focus-visible {
-      outline: 3px solid #bd6485;
-      outline-offset: 3px;
+    .letter-preview::before {
+      content: "For Bhari";
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      color: #a85170;
+      font-style: italic;
+      font-size: 22px;
     }
 
-    .primary {
-      color: white;
-      background: #b8587d;
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: #e9c4ce;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      border-radius: 5px;
     }
 
-    .secondary {
-      color: #9e4b6d;
-      background: white;
-      border-color: #e6bdcd;
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: #f8e3e6;
+      clip-path: polygon(0 0, 50% 58%, 100% 0,
+                         100% 100%, 0 100%);
+      border-radius: 5px;
+      filter: drop-shadow(0 5px 6px #673d4b25);
     }
 
-    .letter {
-      margin-top: 28px;
-      padding: clamp(22px, 6vw, 43px);
-      border: 1px solid #eed8df;
+    /* The triangular flap */
+
+    .envelope-flap {
+      position: absolute;
+      z-index: 5;
+      inset: 0 0 auto 0;
+      height: 110px;
+      background: #e7b6c4;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition: transform .85s ease;
+      backface-visibility: visible;
+    }
+
+    /* Red wax seal */
+
+    .wax-seal {
+      position: absolute;
+      z-index: 7;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 28%,
+                  #f06b76, #b51f3c 70%, #82132b);
+      border: 2px solid #f7a0a5;
+      color: #fff1e8;
+      font-size: 25px;
+      box-shadow: 0 3px 7px #64202e55;
+      transition: opacity .3s, transform .3s;
+    }
+
+    .seal-instruction {
+      margin: 14px 0 8px;
+      color: #854d63;
+      font-size: 14px;
+    }
+
+    /* Opening animation */
+
+    .envelope-scene.opening .envelope-flap,
+    .envelope-scene.opened .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope-scene.opening .wax-seal,
+    .envelope-scene.opened .wax-seal {
+      opacity: 0;
+      transform: translateX(-50%) scale(.45);
+      pointer-events: none;
+    }
+
+    .envelope-scene.opening .letter-preview,
+    .envelope-scene.opened .letter-preview {
+      bottom: 65px;
+      transform: translateY(-55px);
+    }
+
+    .envelope-scene.opened .envelope {
+      cursor: default;
+    }
+
+    .open-hint {
+      color: #a34d70;
+      font-size: 13px;
+    }
+
+    /* Actual apology letter */
+
+    .letter-content {
+      margin-top: 35px;
+      padding: clamp(22px, 6vw, 42px);
+      border: 1px solid #edd5dd;
       border-radius: 12px;
-      background: rgba(255, 253, 249, 0.96);
-      box-shadow: 0 15px 45px rgba(93, 51, 68, 0.13);
+      background: rgba(255,253,249,.97);
+      box-shadow: 0 15px 45px #5d33441f;
       text-align: left;
-      font-size: 17px;
-      line-height: 1.95;
-      overflow-wrap: anywhere;
+      font-size: 16px;
+      line-height: 1.9;
+      animation: reveal .8s ease both;
     }
 
-    .letter h2 {
+    .letter-content h2 {
       text-align: center;
       font-size: 30px;
       font-weight: normal;
+      color: #a94d70;
     }
 
     .signature {
-      margin-top: 28px;
-      color: #a34d70;
+      margin-top: 25px;
       text-align: right;
+      color: #a34d70;
       font-style: italic;
     }
 
     .divider {
       margin: 30px 0;
-      border: none;
+      border: 0;
       border-top: 1px dashed #d9a8b9;
     }
 
-    .reply-section {
-      text-align: center;
-    }
+    .reply-section { text-align: center; }
 
-    .reply-section p {
-      line-height: 1.7;
-    }
+    .reply-section h2 { font-size: 27px; }
 
     .field {
       margin: 18px 0;
@@ -154,37 +252,33 @@
       font: 14px Arial, sans-serif;
     }
 
-    input,
-    textarea {
+    input, textarea {
       display: block;
       width: 100%;
       padding: 13px;
       border: 1px solid #e4c5d0;
       border-radius: 8px;
-      background: white;
+      background: #fff;
       color: #624451;
       font: 16px Arial, sans-serif;
     }
 
     textarea {
-      min-height: 140px;
+      min-height: 130px;
       resize: vertical;
     }
 
-    input:focus,
-    textarea:focus {
-      outline: 2px solid #bd6485;
-      outline-offset: 2px;
+    button.send {
+      padding: 14px 23px;
+      border: 0;
+      border-radius: 30px;
+      background: #b8587d;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
     }
 
-    .privacy-note {
-      color: #79606b;
-      font: 12px/1.6 Arial, sans-serif;
-    }
-
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     footer {
       margin-top: 35px;
@@ -193,27 +287,22 @@
       letter-spacing: 1.5px;
     }
 
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
-      body {
-        background-attachment: scroll;
-      }
-
-      .container {
-        padding: 30px 0;
-      }
-
-      .letter {
-        font-size: 16px;
-      }
+      body { background-attachment: scroll; }
+      .container { padding: 30px 0; }
+      .envelope-scene { height: 220px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      button {
-        transition: none;
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -222,13 +311,9 @@
 <body>
   <main class="container">
 
-    <div class="tag">
-      A LITTLE SOMETHING JUST FOR YOU
-    </div>
+    <div class="tag">A LITTLE SOMETHING JUST FOR YOU</div>
 
-    <h1>
-      Hey, <span class="pink">Bhari</span>
-    </h1>
+    <h1>Hey, <span class="pink">Bhari</span></h1>
 
     <p class="intro">
       I have something I want to say to you.
@@ -236,29 +321,29 @@
       I made you this little corner of the internet.
     </p>
 
-    <button
-      class="envelope"
-      id="envelope"
-      aria-label="Open your letter"
-      type="button">
-      💌
-    </button>
+    <div class="envelope-scene" id="envelopeScene">
 
-    <p id="hint">
-      There's a little letter waiting for you.
+      <button class="envelope" id="envelope"
+        type="button" aria-label="Open the sealed envelope">
+
+        <div class="letter-preview"></div>
+        <div class="envelope-back"></div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+        <span class="wax-seal" aria-hidden="true">♥</span>
+
+      </button>
+    </div>
+
+    <p class="seal-instruction" id="instruction">
+      A little letter, sealed just for you.
     </p>
 
-    <button
-      class="primary"
-      id="openButton"
-      type="button">
-      Open your letter
-    </button>
+    <p class="open-hint" id="hint">
+      Tap the red seal to open your letter.
+    </p>
 
-    <section
-      class="letter hidden"
-      id="letter"
-      aria-label="Apology letter">
+    <section class="letter-content hidden" id="letterContent">
 
       <h2>I'm sorry, Bhari.</h2>
 
@@ -298,9 +383,7 @@
         to listen to how you feel and hopefully make things right.
       </p>
 
-      <p>
-        I'm really sorry, Bhari.
-      </p>
+      <p>I'm really sorry, Bhari.</p>
 
       <p class="signature">
         With a sincere apology,<br>
@@ -322,76 +405,67 @@
           action="https://formsubmit.app/f/ka2q4tu6sn"
           method="POST">
 
-          <input
-            type="hidden"
-            name="_subject"
+          <input type="hidden" name="_subject"
             value="A message from Bhari - Apology Website">
 
           <div class="field">
-            <label for="name">
-              Your name or nickname
-            </label>
-
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Your name"
-              autocomplete="name"
-              required>
+            <label for="name">Your name or nickname</label>
+            <input id="name" name="name"
+              placeholder="Your name" required>
           </div>
 
           <div class="field">
-            <label for="message">
-              Your message
-            </label>
-
-            <textarea
-              id="message"
-              name="message"
+            <label for="message">Your message</label>
+            <textarea id="message" name="message"
               placeholder="Tell me what's on your mind..."
               required></textarea>
           </div>
 
-          <button class="primary" type="submit">
+          <button class="send" type="submit">
             Send me your message
           </button>
-
-          <p class="privacy-note">
-            Your message will be submitted through our
-            message service. Please don't include passwords
-            or other sensitive information.
-          </p>
         </form>
       </div>
     </section>
 
-    <footer>
-      MADE WITH SINCERITY, JUST FOR BHARI
-    </footer>
-
+    <footer>MADE WITH SINCERITY, JUST FOR BHARI</footer>
   </main>
 
   <script>
-    const letter = document.getElementById("letter");
-    const openButton = document.getElementById("openButton");
+    const scene = document.getElementById("envelopeScene");
     const envelope = document.getElementById("envelope");
+    const content = document.getElementById("letterContent");
+    const instruction = document.getElementById("instruction");
     const hint = document.getElementById("hint");
 
-    function openLetter() {
-      letter.classList.remove("hidden");
-      openButton.classList.add("hidden");
+    let isOpening = false;
 
-      hint.textContent = "A message I wanted you to hear.";
+    envelope.addEventListener("click", () => {
+      if (isOpening || scene.classList.contains("opened")) return;
 
-      letter.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
+      isOpening = true;
+      scene.classList.add("opening");
 
-    openButton.addEventListener("click", openLetter);
-    envelope.addEventListener("click", openLetter);
+      instruction.textContent = "Opening your letter...";
+      hint.textContent = "A message from my heart.";
+
+      // Let the flap open and the paper slide out.
+      setTimeout(() => {
+        scene.classList.remove("opening");
+        scene.classList.add("opened");
+
+        content.classList.remove("hidden");
+        instruction.textContent = "A little letter, just for you.";
+        hint.textContent = "Here is what I wanted to say.";
+
+        content.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        isOpening = false;
+      }, 1000);
+    });
   </script>
 </body>
 </html>
