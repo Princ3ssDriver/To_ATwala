@@ -1,11 +1,12 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Little Letter for Bhari 💌</title>
-  <meta name="theme-color" content="#fff0f4">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3f5">
+  <title>A Little Letter for Bhari</title>
 
   <style>
     * { box-sizing: border-box; }
@@ -13,139 +14,131 @@
     body {
       margin: 0;
       min-height: 100vh;
+      background: linear-gradient(140deg, #fff9f4, #fbe3ed, #f3eaff);
+      color: #634653;
       font-family: Georgia, "Times New Roman", serif;
-      color: #604651;
-      background: linear-gradient(145deg, #fff8f2, #ffe5ed, #f9e9ff);
-      overflow-x: hidden;
     }
 
-    .page {
+    .container {
       width: min(92%, 650px);
       margin: auto;
       padding: 55px 0;
       text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     .tag {
       display: inline-block;
       padding: 9px 16px;
-      border: 1px solid #edc1cf;
+      border: 1px solid #eac5d2;
       border-radius: 30px;
       background: #ffffffa8;
       font: 12px Arial, sans-serif;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
 
     h1 {
-      font-size: clamp(38px, 8vw, 62px);
+      font-size: clamp(40px, 9vw, 62px);
       font-weight: normal;
-      line-height: 1.1;
       margin: 25px 0 15px;
     }
 
-    .pink { color: #c45b83; }
+    .pink { color: #bd5d82; }
 
     .intro {
-      font-size: 17px;
-      line-height: 1.8;
       max-width: 470px;
-      margin: 0 auto 30px;
+      margin: 0 auto 25px;
+      line-height: 1.8;
+      font-size: 17px;
     }
 
     .envelope {
-      font-size: 100px;
-      cursor: pointer;
-      display: inline-block;
+      display: block;
+      margin: 15px auto;
+      padding: 10px;
+      font-size: 95px;
       border: 0;
       background: transparent;
-      filter: drop-shadow(0 10px 10px #c47b9233);
-      animation: float 3s ease-in-out infinite;
-      transition: transform .3s;
-    }
-
-    .envelope:hover { transform: scale(1.08) rotate(-4deg); }
-
-    @keyframes float {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -10px; }
+      cursor: pointer;
     }
 
     button {
-      font: 15px Arial, sans-serif;
-      cursor: pointer;
-      border: none;
-      border-radius: 30px;
       padding: 14px 23px;
       margin: 7px;
-      transition: transform .2s, background .2s;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      border: 1px solid #eac5d2;
+      transition: transform .2s;
     }
 
     button:hover { transform: translateY(-2px); }
 
     .primary {
-      background: #bd587e;
+      background: #bd5d82;
       color: white;
-      box-shadow: 0 5px 15px #bd587e33;
+      border-color: #bd5d82;
     }
 
-    .secondary {
-      background: white;
-      color: #a54b70;
-      border: 1px solid #edc1cf;
-    }
+    .hidden { display: none !important; }
 
     .letter {
-      text-align: left;
-      background: #fffdf9;
-      border: 1px solid #f0d7d9;
-      border-radius: 8px;
-      padding: clamp(22px, 6vw, 42px);
       margin-top: 30px;
-      box-shadow: 0 18px 50px #a45b7920;
+      padding: clamp(22px, 6vw, 42px);
+      background: #fffdf9;
+      border: 1px solid #f0d7df;
+      border-radius: 10px;
+      text-align: left;
       line-height: 1.95;
       font-size: 17px;
-      position: relative;
-    }
-
-    .letter::before {
-      content: "♡";
-      display: block;
-      text-align: center;
-      color: #cf7898;
-      font-size: 30px;
-      margin-bottom: 15px;
+      box-shadow: 0 15px 40px #9e60751a;
     }
 
     .letter h2 {
       text-align: center;
       font-weight: normal;
-      font-size: 30px;
+      font-size: 31px;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px dashed #d9a8b9;
+      margin: 30px 0;
     }
 
     .signature {
       text-align: right;
       font-style: italic;
       color: #b34f78;
-      margin-top: 25px;
     }
 
-    .hidden { display: none; }
+    .reply-section { text-align: center; }
 
-    .response {
-      margin-top: 28px;
-      padding: 25px 10px;
-      border-top: 1px dashed #d9a8b9;
-      text-align: center;
+    .reply-section p { line-height: 1.7; }
+
+    .field {
+      margin: 16px 0;
+      text-align: left;
     }
 
-    #reply {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #a34b70;
-      min-height: 28px;
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font: 14px Arial, sans-serif;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #e6c6d2;
+      border-radius: 8px;
+      background: white;
+      color: #634653;
+      font: 16px Arial, sans-serif;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
     }
 
     footer {
@@ -155,45 +148,32 @@
       color: #956c7c;
     }
 
-    .heart {
-      position: fixed;
-      bottom: -30px;
-      pointer-events: none;
-      animation: rise 6s linear forwards;
-      z-index: 0;
-    }
-
-    @keyframes rise {
-      to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
+        transition: none !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="page">
-    <div class="tag">A little something from me to you ♡</div>
+  <main class="container">
+    <div class="tag">A LITTLE SOMETHING JUST FOR YOU</div>
 
-    <h1>Hey, <span class="pink">Bhari</span> 💗</h1>
+    <h1>Hey, <span class="pink">Bhari</span> ♡</h1>
 
     <p class="intro">
       I have something I want to say to you.
-      I thought I'd put it into a little letter,
-      because some things deserve more than a quick message.
+      Instead of sending a normal message,
+      I made you this little corner of the internet.
     </p>
 
     <button class="envelope" id="envelope"
-      aria-label="Open your letter">💌</button>
+      aria-label="Open the letter">💌</button>
 
-    <p id="hint">A little letter, just for you.</p>
+    <p id="hint">There's a little letter waiting for you.</p>
 
-    <button class="primary" id="openBtn">
+    <button class="primary" id="openButton">
       Open your letter ♡
     </button>
 
@@ -203,58 +183,80 @@
       <p>Hey Bhari, ❤️</p>
 
       <p>
-        I wanted to make this little website because I owe you
-        an apology, and I want you to know that I genuinely mean it.
+        I made this little website because I owe you a sincere
+        apology, and I wanted to take the time to say it properly.
       </p>
 
       <p>
         I'm sorry for not showing up. I understand that my absence
-        may have disappointed you or made you feel like you weren't
-        important to me. I'm sorry for putting you in that position.
+        may have disappointed you or hurt your feelings. You
+        deserved better communication and consideration from me.
       </p>
 
       <p>
-        Whatever the reason was, I know that I should have handled
-        things better and communicated with you. You deserved that
-        consideration from me.
+        Whatever the circumstances were, I know I could have
+        handled things better. I don't want to make excuses or
+        act as if what happened doesn't matter.
       </p>
 
       <p>
-        I don't want to make excuses or expect you to forget how
-        you felt just because I'm apologising now. I just want to
-        take responsibility for my part and let you know that
-        I'm genuinely sorry.
+        Our friendship means something to me, and I don't want
+        my actions to make you feel like you don't matter.
+        I'm genuinely sorry that I let you down.
       </p>
 
       <p>
-        Our friendship matters to me, Bhari, and I never wanted
-        my actions to make you feel otherwise. I hope that, when
-        you're ready, we can talk about it.
+        I'm not asking you to forget what happened or forgive me
+        immediately. I just wanted to take responsibility and
+        let you know that I wish I had done things differently.
       </p>
 
       <p>
-        You don't have to respond immediately or forgive me before
-        you're ready. I just wanted you to hear this from my heart.
+        I hope we can talk when you're ready. I'd like the chance
+        to listen to how you feel and hopefully make things right.
       </p>
 
-      <p>I'm really sorry, Bhari. 🥹❤️</p>
+      <p>I'm really sorry, Bhari. ❤️</p>
 
       <p class="signature">
-        With love and a sincere apology,<br>
-        Someone who hopes to make things right ♡
+        With a sincere apology,<br>
+        From me, with love and respect.
       </p>
 
-      <div class="response">
-        <p><strong>Whenever you're ready… 💗</strong></p>
+      <hr class="divider">
+
+      <div class="reply-section">
+        <h2>Whenever you're ready</h2>
+
         <p>
-          No pressure to say anything. But if you'd like to,
-          you can leave a little message here.
+          You can leave me a message below.
+          There's no pressure to respond before you're ready.
         </p>
 
-        <button class="primary" id="talkBtn">I'd like to talk 💌</button>
-        <button class="secondary" id="timeBtn">I need some time 🤍</button>
+        <form
+          action="https://formsubmit.app/f/ka2q4tu6sn"
+          method="POST">
 
-        <p id="reply" aria-live="polite"></p>
+          <input type="hidden" name="_subject"
+            value="A message from Bhari - Apology Website">
+
+          <div class="field">
+            <label for="name">Your name or nickname</label>
+            <input id="name" name="name"
+              placeholder="Your name" required>
+          </div>
+
+          <div class="field">
+            <label for="message">Your message</label>
+            <textarea id="message" name="message"
+              placeholder="What would you like to tell me?"
+              required></textarea>
+          </div>
+
+          <button class="primary" type="submit">
+            Send me your message 💌
+          </button>
+        </form>
       </div>
     </section>
 
@@ -263,43 +265,24 @@
 
   <script>
     const letter = document.getElementById("letter");
-    const openBtn = document.getElementById("openBtn");
+    const openButton = document.getElementById("openButton");
     const envelope = document.getElementById("envelope");
-    const hint = document.getElementById("hint");
 
     function openLetter() {
       letter.classList.remove("hidden");
-      openBtn.classList.add("hidden");
-      envelope.textContent = "💗";
-      hint.textContent = "A message from my heart.";
-      letter.scrollIntoView({ behavior: "smooth", block: "start" });
+      openButton.classList.add("hidden");
+
+      document.getElementById("hint").textContent =
+        "A message I wanted you to hear.";
+
+      letter.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     }
 
-    openBtn.addEventListener("click", openLetter);
+    openButton.addEventListener("click", openLetter);
     envelope.addEventListener("click", openLetter);
-
-    document.getElementById("talkBtn").addEventListener("click", () => {
-      document.getElementById("reply").textContent =
-        "That would mean a lot. Whenever you're ready, let's talk. ❤️";
-    });
-
-    document.getElementById("timeBtn").addEventListener("click", () => {
-      document.getElementById("reply").textContent =
-        "I understand. Take all the time you need. No pressure. 🤍";
-    });
-
-    function createHeart() {
-      const heart = document.createElement("span");
-      heart.className = "heart";
-      heart.textContent = ["♡", "💗", "♥", "✧"][Math.floor(Math.random() * 4)];
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (14 + Math.random() * 18) + "px";
-      heart.style.animationDuration = (5 + Math.random() * 4) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 9500);
-    }
-
-    setInterval(createHeart, 900);
   </script>
 </body>
 </html>
